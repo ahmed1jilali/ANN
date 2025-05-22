@@ -113,6 +113,7 @@ stats.plotThroughput()
 stats.plotResiduals()
 stats.predictionVsActualScatterPlot()
 stats.lossCurveOverEpochs()
+stats.plotResidualsHistogram()
 
 # print(f"Mean Squared Error (MSE): {mse:.4f}")
 # print(f"R-squared (R²): {r2:.4f}")

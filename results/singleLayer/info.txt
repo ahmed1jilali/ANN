@@ -1,0 +1,3 @@
+param, errors = fit(X_train, y_train, iterations=1000, eta=0.001)
+Mean Squared Error (MSE): 12298979.3378
+R-squared (R²): 0.8114

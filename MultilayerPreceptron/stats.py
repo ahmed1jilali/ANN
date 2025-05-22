@@ -42,6 +42,19 @@ class Stats:
         plt.tight_layout()
         plt.show()
 
+    def plotResidualsHistogram(self, bins=30):
+        # Adjust the number of bins depending on your dataset size for better granularity.
+        plt.figure(figsize=(8, 5))
+        plt.hist(self.residuals(), bins=bins, color='purple', edgecolor='black', alpha=1)
+        # A vertical line at zero to show bias (left = underprediction, right = overprediction).
+        plt.axvline(0, color='black', linestyle='--')
+        plt.title("Residual Errors Histogram")
+        plt.xlabel("Residual (y_actual - y_predicted)")
+        plt.ylabel("Frequency")
+        plt.grid(True)
+        plt.tight_layout()
+        plt.show()
+
     def predictionVsActualScatterPlot(self):
         plt.figure(figsize=(6, 6))
         plt.scatter(self.y_test_denorm, self.y_pred_denorm, alpha=0.6, color='green')
