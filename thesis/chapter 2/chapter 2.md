@@ -18,7 +18,7 @@ The biological neuron is composed of a cell **body** containing the nucleus, an 
 
 <img src="assets/2216b4649b38ab60c9a9897b54a72dde4cde8fab.png" title="" alt="" data-align="center">
 
-**Figure 2.1**: biological neruon
+`**Figure 2.1**: biological neuron`
 
 ## Artificial neuron:
 
@@ -26,9 +26,9 @@ The artificial neuron is inspired by the biological neuron model; it consists of
 
 <img src="assets/1b0da7e70df43cbfce17c152555509f9371f6e7c.PNG" title="" alt="loading-ag-230" data-align="center">
 
-**Figure 2.2** artificial neuron model
+`**Figure 2.2** artificial neuron model`
 
-[^4] `R ´ESEAUX DE NEURONES
+[^4]:  dfasf,`R ´ESEAUX DE NEURONES
 GIF-21140 et GIF-64326
 par Marc Parizeau
 Automne 2004`
@@ -58,7 +58,7 @@ such that $w$ is the $(n, 1)$ matrix of weights of the neuron connections
 
 <img src="assets/50765b729bd97b8d471783d544961830ee3f42ae.PNG" title="" alt="loading-ag-209" data-align="center">
 
-**Figure 2.3**: matrix representation of an artificial neuron model
+`**Figure 2.3**: matrix representation of an artificial neuron model`
 
 ## Activation functions:
 
@@ -68,7 +68,7 @@ The usual activation functions of a neuron are summerised in the table below:
 
 <img src="assets/83ba7c090a8925336c37d7e87eaea0647fdb1618.PNG" title="" alt="" data-align="center">
 
-**Table 2.1**: usual activation functions
+`**Table 2.1**: usual activation functions`
 
 ## Layerd neural networks:
 
@@ -78,7 +78,7 @@ The structure in **Figure 2.4** presents a neural network scheme with input laye
 
 <img src="assets/3c65a05907b3a674aa93559ff1da0816bacb3ecd.PNG" title="" alt="" data-align="center">
 
-**Figure 2.4**:  neural network structure with one hidden layer
+`**Figure 2.4**:  neural network structure with one hidden layer`
 
 The weight matrix of a such network is given as:
 
@@ -110,4 +110,90 @@ Learning process has been distinguished depending on whether the desired output 
 
 ![](assets/9489a7b186541cf4f4273cd30e290986f77f76f8.PNG)
 
-**Figure 2.5**: Supervised learning diagram.
+`**Figure 2.5**: Supervised learning diagram.`
+
+## Non-Adaptive Learning in Neural Networks:
+
+The primary objective of neural network training is to minimize the least squares cost function see **Equation N03**, where $\hat{y}$ is the predicted value, and $y$ is the expected value. 
+
+$$
+E = \frac{1}{2}(\hat{y}-y)^2
+$$
+
+**Equation N03**: The sum of squared errors formula.
+
+Since, neural networks are nonlinear systems, the process of finding optimal parameters by setting the gradient of the cost function to zero also becomes nonlinear, which make the parameter estimation process more complex.
+
+Another problem is existence of local minima in the cost function, since it's not quadratic, it does not have only one minimum, this is shown in **Figure 2.6**.
+
+<img src="assets/2025-05-23-15-34-31-image.png" title="" alt="" data-align="center">
+
+`**Figure 2.6**: A representation of the cost function with local minima and a global minima of an artificial neuron with two inputs.`
+
+Iterative methods are used to minimize the cost function of a nonlinear model, where the model parameters are adjusted based on the gradient of the cost function.
+
+On each iteration *(epoch)* of the learning process, two distinct components are needed:
+
+- Evaluation of the gradient of the chosen cost function.
+
+- Adjusting the parameters of the neural network based on this gradient to approach a minimum of the cost function.
+
+## Data preprocessing:
+
+Preprocessing is a crucial step after gathering data, which makes the modeling more effective. This step depends on what task is to be performed and the characteristics of the data being handled.
+
+Preprocessing involves normalizing the data, so that all values lie in the range $[0,1]$, this is very helpful for neural networks, which tend to train more efficiently on uniformly scaled input data.
+
+It also helps avoid exploding or vanishing gradients and improves convergence speed.
+
+The normalization is shown in **Equation N03** where:
+
+- $x_{i}^{normalized}​$ is the normalized value.
+
+- $x_{i}$ is the original value.
+
+- $x_{max}$ is the maximum value in the data.
+
+- $x_{min}$ is the minimum value in the data.
+
+$$
+x_{i}^{normalized}​ = \frac{x_{max}​−x_{min}}{​x_{i}​−x_{min}}​​
+$$
+
+**Equation N04**: Normalization formula.
+
+Another step is to split the data into a training set and a testing set, for example $70\%$ goes for training the model, and the remaining $30\%$ of the data goes for testing.
+
+## Gradient Evaluation by Backpropagation:
+
+A key part in the learning procedure of neural networks is an algorithm called **Back propagation**.
+
+Considering a none feedback neural network of a single input unit, a single hidden unit and a single output unit, a graphical representation is shown in **Figure 2.7**.
+
+<img src="assets/2025-05-23-18-47-28-image.png" title="" alt="" data-align="center">
+
+**Figure 2.7**: An artificial neural network with a single unit in the input, hidden, and output layers.
+
+Applying the chain-rule of calculus on the cost function, see **Equation N03**, to calculate the error $E$ with respect to the weights $w$ in layer *(L)* will result in the following equation:
+
+$$
+\frac{dE}{dw^{L}} =
+\frac{dE}{da^{L}} \times
+\frac{da^{L}}{dz^{L}} \times
+\frac{dz^{L}}{dw^{L}}
+$$
+
+**Equation N04**: Partial Derivative of the Error with Respect to Output Layer Weights
+
+As for calculating the gradient of the error $E$ with respect to the weights $w$ in the hidden layer *(L−1)*,  see **Equation N05**.
+
+$$
+\frac{dE}{dw^{L-1}} =
+\frac{dE}{da^{L}} \times
+\frac{da^{L}}{dz^{L}} \times
+\frac{dz^{L}}{da^{L-1}} \times
+\frac{da^{L-1}}{dz^{L-1}} \times
+\frac{dz^{L-1}}{dw^{L-1}}
+$$
+
+**Equation N05**: Partial Derivative of the Error with Respect to Hidden Layer Weights
