@@ -16,7 +16,7 @@ In this section, we will introduce neurons and their properties, layered neural 
 
 The biological neuron is composed of a cell **body** containing the nucleus, an **axon** that transmit information via its synaptic terminals and **dendrites** that receive inputs from other neurons via synapses.[^3]
 
-![](C:\Users\white\AppData\Roaming\marktext\images\2025-05-21-15-14-10-The-biological-neuron.png)
+<img src="assets/2216b4649b38ab60c9a9897b54a72dde4cde8fab.png" title="" alt="" data-align="center">
 
 **Figure 2.1**: biological neruon
 
@@ -24,11 +24,9 @@ The biological neuron is composed of a cell **body** containing the nucleus, an 
 
 The artificial neuron is inspired by the biological neuron model; it consists of an integrator that performs the weighted sum of its inputs. The result of this sum is then transformed by a transfer function, which produces the output of the neuron; a model of a neuron is presented in **Figure 2.2***. [^4]
 
-![](C:\Users\white\AppData\Roaming\marktext\images\2025-05-21-15-34-06-image.png)
+<img src="assets/1b0da7e70df43cbfce17c152555509f9371f6e7c.PNG" title="" alt="loading-ag-230" data-align="center">
 
 **Figure 2.2** artificial neuron model
-
-
 
 [^4] `R ´ESEAUX DE NEURONES
 GIF-21140 et GIF-64326
@@ -44,15 +42,11 @@ $$
 
 **Equation N01**
 
-
-
 $$
 a = f(z)
 $$
 
 **Equation N02**
-
-
 
 The neural network can be represented in matrix form as 
 
@@ -62,11 +56,9 @@ $$
 
 such that $w$ is the $(n, 1)$ matrix of weights of the neuron connections  
 
-![](C:\Users\white\AppData\Roaming\marktext\images\2025-05-21-16-09-24-image.png)
+<img src="assets/50765b729bd97b8d471783d544961830ee3f42ae.PNG" title="" alt="loading-ag-209" data-align="center">
 
 **Figure 2.3**: matrix representation of an artificial neuron model
-
-
 
 ## Activation functions:
 
@@ -74,12 +66,9 @@ There exists various types of activation functions, among them, threshhold funct
 
 The usual activation functions of a neuron are summerised in the table below:
 
-
-![](C:\Users\white\AppData\Roaming\marktext\images\2025-05-21-16-15-11-image.png)
+<img src="assets/83ba7c090a8925336c37d7e87eaea0647fdb1618.PNG" title="" alt="" data-align="center">
 
 **Table 2.1**: usual activation functions
-
-
 
 ## Layerd neural networks:
 
@@ -87,7 +76,7 @@ Neural networks  are structured in layers *(input layer, hidden layers, output l
 
 The structure in **Figure 2.4** presents a neural network scheme with input layer, one hidden layer, and an output layer.
 
-![](C:\Users\white\AppData\Roaming\marktext\images\2025-05-21-16-34-53-image.png)
+<img src="assets/3c65a05907b3a674aa93559ff1da0816bacb3ecd.PNG" title="" alt="" data-align="center">
 
 **Figure 2.4**:  neural network structure with one hidden layer
 
@@ -105,13 +94,9 @@ w_{m,1} & w_{m,2}  & ... & w_{m, n} \\
 
 $$
 
-
-
 Each row of the matrix represents the number of an input to the network, and each column represents the number of neurons in the hidden layer.
 
 In the case of a connection between two layers of a multilayer network, the rows represent the outputs of the previous layer and the columns represent the inputs of the next layer.
-
-
 
 ## Learning process:
 
@@ -119,18 +104,10 @@ Learning is an iterative process that update the parameters of a network in resp
 
 The learning process is based on minimization of the error between the output calculated by the neural network and the actual output. The connection weights between the different neurons will be adjusted after computing the error.
 
-
-
 ## Supervised / Unsupervised learning process:
 
 Learning process has been distinguished depending on whether the desired output is present to calculate the difference between it and the outputs computed by the neural network in order to adjust the network's weights *(supervised learning process)* or not *(unsupervised leaning process)*.
 
-
-
-![](C:\Users\white\AppData\Roaming\marktext\images\2025-05-21-17-05-17-image.png)
+![](assets/9489a7b186541cf4f4273cd30e290986f77f76f8.PNG)
 
 **Figure 2.5**: Supervised learning diagram.
-
-
-
-
