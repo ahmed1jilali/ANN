@@ -1,0 +1,42 @@
+import tkinter as tk
+import random
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import matplotlib.animation as animation
+
+class RandomPlotApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Random Number Plotter")
+
+        self.data = []
+
+        # Set up matplotlib figure and axis
+        self.fig, self.ax = plt.subplots()
+        self.line, = self.ax.plot([], [], 'b')  # blue line with circle markers
+
+        # Embed the matplotlib figure in Tkinter window
+        self.canvas = FigureCanvasTkAgg(self.fig, master=self.root)
+        self.canvas_widget = self.canvas.get_tk_widget()
+        self.canvas_widget.pack()
+
+        # Close button
+        self.close_button = tk.Button(self.root, text="Close", command=self.root.quit)
+        self.close_button.pack(pady=10)
+
+        # Start animation
+        self.ani = animation.FuncAnimation(self.fig, self.update_plot, interval=1000)
+
+    def update_plot(self, frame):
+        new_value = random.randint(1, 100)
+        self.data.append(new_value)
+        self.line.set_data(range(len(self.data)), self.data)
+
+        self.ax.relim()
+        self.ax.autoscale_view()
+        self.canvas.draw()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = RandomPlotApp(root)
+    root.mainloop()

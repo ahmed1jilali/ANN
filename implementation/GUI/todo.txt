@@ -1,0 +1,23 @@
+nerual network:
+	number of layers
+	number of neurons in each layer
+	activation function
+
+training:
+	by epoch
+	till MSE is less than a specified value
+	till R^2 is less than a specified value
+	halt training
+
+view results:
+	live monitor each of:
+		MSE
+		R^2
+		Throughput
+		ResidualsHistogram
+		predictionVsActualScatterPlot
+		lossCurveOverEpochs
+
+Save:
+	save network
+	save results
