@@ -1,3 +1,5 @@
+# Machine learninig approaches(techniques)
+
 # Introduction
 
 Observations from the study of biological systems served as the inspiration for the mathematical creation of artificial neural networks which offer a new approach to problems of perception, learning, memory, and reasoning. They infer emergent properties that allow us to solve problems that were considered complex before and prove to be very promising alternatives for circumventing some of the limitations of conventional computers [1]. 
@@ -6,7 +8,7 @@ The brain learning process consists of either establishing new connections or mo
 
 Neural networks find applications in various fields. Among them, airplane autopilot, car guidance, signal processing systems, speech synthesis and speaker recognition, computer vision and face recognition, forecasting the monetary markets, assessing financial or insurance risk, medical diagnosis, oil and gas exploration, robotics, telecommunications, etc. 
 
-There are different types of neural networks, each performing a specific function, among them, modeling, classification, and control. The most commonly used type of Neural Networks is the multi-layer perceptron.
+There are different types of neural networks, each performing a specific function, among them, regression and classification. The most commonly used type of Neural Networks is the multi-layer perceptron.
 
 In this section, we will introduce neurons and their properties, layered neural networks as well as learning algorithms.
 
@@ -64,17 +66,41 @@ such that $w$ is the $(n, 1)$ matrix of weights of the neuron connections
 
 There exists various types of activation functions, among them, threshhold function, liniar function, sigmoid funciton and hyperbolic function.
 
+### Radial Basis Function Networks (RBFs)
+
+These use the same architecture as MLP, but the activation functions are Gaussian
+functions.
+
 The usual activation functions of a neuron are summerised in the table below:
 
 <img src="assets/83ba7c090a8925336c37d7e87eaea0647fdb1618.PNG" title="" alt="" data-align="center">
 
 `**Table 2.1**: usual activation functions`
 
-## Layerd neural networks:
+## Layerd neural networks(Mulitlayer perceptron):
 
-Neural networks  are structured in layers *(input layer, hidden layers, output layer)*, each layer is composed by a number of neurons.
+`Neural networks  are structured in layers *(input layer, hidden layers, output layer)*, each layer is composed by a number of neurons.`
 
-The structure in **Figure 2.4** presents a neural network scheme with input layer, one hidden layer, and an output layer.
+## Multi-Layer Perceptron (MLP)
+
+The Multi-Layer Perceptron (MLP) is likely the most well-known type of neural
+network. Its structure includes an input layer, an output layer, and one or more
+hidden layers. Each neuron connects only to the neurons in adjacent layers.
+MLP is an enhanced version of the single-layer perceptron, adding hidden layers.
+They use the backpropagation algorithm to update weights. The goal is to
+minimize the mean squared error, typically using a differentiable function like the
+sigmoid. The error is propagated from the output layer back to the input layer.
+**Input layer**: receives source data for analysis. The number of input nodes equals
+the number of input variables (one input node per variable).
+**Hidden layers**: are intermediate layers between the input and output layers, with
+typically nonlinear activation functions. The number of hidden nodes must be
+chosen carefully.
+**Output layer**: returns the processed result. The number of output nodes depends
+on the task type. For instance, in a regression problem, we use a single output
+node. However, in a classification problem, the number of nodes is usually equal to
+the number of classes.
+
+The structure in **Figure 2.4** presents a multilayer preceptron *(neural network)* scheme with input layer, one hidden layer, and an output layer.
 
 <img src="assets/3c65a05907b3a674aa93559ff1da0816bacb3ecd.PNG" title="" alt="" data-align="center">
 
@@ -100,19 +126,21 @@ In the case of a connection between two layers of a multilayer network, the rows
 
 ## Learning process:
 
-Learning is an iterative process that update the parameters of a network in response to its environment excitation. The learning type is determined by the way in which the parameter updates.
+Learning in neural networks involves estimating the parameters (weights) of a network in response to its environment excitation. The learning type is determined by the way in which the parameter updates. Three learning types exist: supervised, unsupervised, and semi-supervised.
 
-The learning process is based on minimization of the error between the output calculated by the neural network and the actual output. The connection weights between the different neurons will be adjusted after computing the error.
+In our work we are intersted in supervised learning method.
 
-## Supervised / Unsupervised learning process:
+`The learning process is based on minimization of the error between the output calculated by the neural network and the actual output. The connection weights between the different neurons will be adjusted after computing the error.`
 
-Learning process has been distinguished depending on whether the desired output is present to calculate the difference between it and the outputs computed by the neural network in order to adjust the network's weights *(supervised learning process)* or not *(unsupervised leaning process)*.
+## Supervised learning process:
 
-![](assets/9489a7b186541cf4f4273cd30e290986f77f76f8.PNG)
+Supervised learning process is based on minimization of the error between the desired output *(actual output)*  and the outputs computed by the neural network in order to adjust the network's weights.
+
+<img src="assets/2025-05-25-16-16-41-image.png" title="" alt="" data-align="center">
 
 `**Figure 2.5**: Supervised learning diagram.`
 
-## Non-Adaptive Learning in Neural Networks:
+## Cost function:
 
 The primary objective of neural network training is to minimize the least squares cost function see **Equation N03**, where $\hat{y}$ is the predicted value, and $y$ is the expected value. 
 
@@ -138,33 +166,60 @@ On each iteration *(epoch)* of the learning process, two distinct components are
 
 - Adjusting the parameters of the neural network based on this gradient to approach a minimum of the cost function.
 
-## Data preprocessing:
+## Backpropagation algorithm
 
-Preprocessing is a crucial step after gathering data, which makes the modeling more effective. This step depends on what task is to be performed and the characteristics of the data being handled.
+The backpropagation learning alogrithm is an itirative algorithm with the aim to find the optimal weights in the terms of minimizing the cost function on the learning set. This minimization of the cost function using the gradiant of the cost function with respect to weights.
 
-Preprocessing involves normalizing the data, so that all values lie in the range $[0,1]$, this is very helpful for neural networks, which tend to train more efficiently on uniformly scaled input data.
+A key part in the learning procedure of neural networks is an algorithm called **Back propagation**.
 
-It also helps avoid exploding or vanishing gradients and improves convergence speed.
+![](assets/2025-05-25-14-00-16-image.png)
 
-The normalization is shown in **Equation N03** where:
+**Figure** backpropagation learning alogrithm
 
-- $x_{i}^{normalized}​$ is the normalized value.
+We use the letter $j$ to index the units in the output layer, the letter $k$ to index the units in the hidden layer, and the letter $i$ to index the units in the input layer. We also need indices for the 
+weights. For any network with multiple units, we will have more weights than units, which means we will need two subscripts to indicate each weight.We will index the weights as $w_{destination-units, origin-units}$ .For instance, weights in $(L)$ become $w_{jk}$.
 
-- $x_{i}$ is the original value.
+The derivative of the error w.r.t the weights in (L) layer is given by:
 
-- $x_{max}$ is the maximum value in the data.
+<img title="" src="assets/2025-05-25-14-41-40-image.png" alt="" data-align="center">
 
-- $x_{min}$ is the minimum value in the data.
+assuming a network with multiple output units. The error derivatives with respect to $w$ in $(L−1)$ is given by:
 
-$$
-x_{i}^{normalized}​ = \frac{x_{max}​−x_{min}}{​x_{i}​−x_{min}}​​
-$$
+<img src="assets/2025-05-25-14-47-59-image.png" title="" alt="" data-align="center">
 
-**Equation N04**: Normalization formula.
+Considering the new indices, the derivative for the error with respect to the bias b is given by:
 
-Another step is to split the data into a training set and a testing set, for example $70\%$ goes for training the model, and the remaining $30\%$ of the data goes for testing.
+<img src="assets/2025-05-25-14-50-09-image.png" title="" alt="" data-align="center">
 
-## Gradient Evaluation by Backpropagation:
+The error derivatives with respect to $b$ in (L−1) is given by:
+
+<img title="" src="assets/2025-05-25-14-52-41-image.png" alt="" data-align="center">
+
+## Backpropagation weight update
+
+Now we use the computed gradients to update the weights and biases values. We do this by taking a portion of the gradient and substracting that to the current weight and bias value.
+
+For the wegiths wjk in the (L) layer we update by:
+
+<img src="assets/2025-05-25-14-56-15-image.png" title="" alt="" data-align="center">
+
+For the wegiths wki in the (L−1) layer we update by:
+
+<img src="assets/2025-05-25-14-57-09-image.png" title="" alt="" data-align="center">
+
+For the bias b in the (L) layer we update by:
+
+<img src="assets/2025-05-25-14-57-49-image.png" title="" alt="" data-align="center">
+
+For the bias b in the (L−1) layer we update by:
+
+<img src="assets/2025-05-25-14-58-34-image.png" title="" alt="" data-align="center">
+
+Where $η$ is the *step size* or *learning rate*.
+
+## 
+
+## 
 
 A key part in the learning procedure of neural networks is an algorithm called **Back propagation**.
 

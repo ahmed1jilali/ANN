@@ -19,9 +19,10 @@ def linear_function(W, X, b):
 def sigmoid_function(Z):
     Z = np.clip(Z, -500, 500)  # prevent overflow
     return 1 / (1 + np.exp(-Z))
+    # return np.exp(-np.linalg.norm(Z)**2 / 2)
 
 def cost_function(A, y):
-    return (np.mean(np.power(A - y, 2))) / 2
+    return (np.mean(np.power(A - y, 2)))/2
 
 def predict(X, W1, W2, b1, b2):
     Z1 = linear_function(W1, X, b1)
@@ -115,8 +116,8 @@ stats.predictionVsActualScatterPlot()
 stats.lossCurveOverEpochs()
 stats.plotResidualsHistogram()
 
-# print(f"Mean Squared Error (MSE): {mse:.4f}")
-# print(f"R-squared (R²): {r2:.4f}")
+print(f"Mean Squared Error (MSE): {stats.mse()}")
+print(f"R-squared (R²): {stats.r2()}")
 
 # Mean Squared Error (MSE): 12298979.3378
 # R-squared (R²): 0.8114
