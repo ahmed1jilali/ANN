@@ -35,10 +35,6 @@ where:
 
 **Figure** the step function graph
 
-
-
-
-
 ### Identity Function
 
 The **Identity activation function**, is a function that returns the input value unchanged. It is mathematically defined as:
@@ -54,8 +50,6 @@ The output of the function is a direct linear function of the input. see **Figur
 **Figure**: Identity Function *(Linear function)* graphical representation.
 
 This function allows the MLP *(Multi layer perceptron)* to output any real value, which is suitable to model relationships where output are not restricted to a specific range. But it does not introduce non-linearity to the system, which makes MLP using it an equivalent to a linear model.
-
-
 
 ### Linear Threshold Function
 
@@ -73,17 +67,11 @@ $$
 f(x) = \frac{1}{1+e^{-x}}
 $$
 
-
-
-
-
 This function introduces non-linearity and it allows the network to model complex, nonlinear patterns.
 
 <img src="assets/2025-05-25-23-44-38-image.png" title="" alt="" data-align="center">
 
 **Figure**: graphical representation of the Sigmoid function
-
-
 
 ### Hyperbolic Tangent *(Tanh Function)*
 
@@ -102,5 +90,25 @@ with $-1<f(x)<1$.
 <img src="https://i0.wp.com/sefiks.com/wp-content/uploads/2017/01/tanh.png?resize=456%2C300&ssl=1" title="" alt="" data-align="center">
 
 **Figure**  A graphical representation of the Hyperbolic Tangent function *(tanh)*.
+
+### Radial Basis Function *(RBF)*
+
+The *RBF* activation function transforms the weighted sum of inputs into a value between 0 and 1 (or a similar range). The most common type of **RBF** is the Gaussian function, which has a Bell-shaped curve, see **Figure**. The output of the function depends on the distance between the input and a central point, the closer the input is to the center, the higher the output.
+
+The *RBF* equation is given as:
+
+$$
+f(x) = e^{-\frac{|x-c|^2}{r^2}}
+$$
+
+**Equation** The Radial Basis Function
+
+Where $c$ is the center and $r$ is the radius.
+
+
+
+![gaussian_rbf.png (640×480)](https://www.baeldung.com/wp-content/uploads/sites/4/2024/01/gaussian_rbf.png)
+
+**Figure** Gaussian Radial Basis Function graph
 
 
