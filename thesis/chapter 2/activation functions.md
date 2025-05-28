@@ -98,17 +98,17 @@ The *RBF* activation function transforms the weighted sum of inputs into a value
 The *RBF* equation is given as:
 
 $$
-f(x) = e^{-\frac{|x-c|^2}{r^2}}
+ϕ(x) = e^{-\frac{||x-c||^2}{r^2}}
 $$
 
 **Equation** The Radial Basis Function
 
 Where $c$ is the center and $r$ is the radius.
 
-
-
 ![gaussian_rbf.png (640×480)](https://www.baeldung.com/wp-content/uploads/sites/4/2024/01/gaussian_rbf.png)
 
 **Figure** Gaussian Radial Basis Function graph
 
+## Conclusion
 
+This chapter provides a theoretical foundation for understanding the functioning of multi-layer neural networks. Starting from a simple model of biological neurons, the "perceptron", a shape inspired by nerve cells, a more complex model has been built that of multi-layer perceptron. This model learns patterns via optimization techniques, especially backpropagation algorithm, leading to models derived from empirical data. Multilayer neural networks are based on a heavy computational theory, using

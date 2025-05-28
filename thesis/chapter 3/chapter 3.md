@@ -1,7 +1,5 @@
 # Throughput forecasting for LTE network
 
-
-
 Implementation Steps for an MLP
 
 1. Identify relevant inputs (variables that significantly impact the target phenomenon).
