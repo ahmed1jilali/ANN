@@ -51,8 +51,6 @@ The **HLR** is a database that manages subscribers of a **PLMN** *(Public Land M
 
 The **VLR** is a database that stores the subscription data of subscribers present in a geographical area. The data stored by the **VLR** is similar to that of the **HLR** but only concerns mobile subscribers present in the area in question. It also assigns the temporary identity *(TMSI)* to the mobile when it enters the covered area.
 
- 
-
 `Home Location Register:It is a main database that contains information about permanent subscribers to the GSM network. The HLR contains the details of each SIM card in the network and uses the card's IMSI as the primary key to search its records, which the MSC uses to find out the location, number, etc. Victor Location Registration (VLR): It is a temporary database for tracking MSC participants, to temporarily store information without the need for an HLR and when you leave it is automatically deleted to ensure the conversation flows.`
 
 ### The Equipment Identities Register (EIR):
