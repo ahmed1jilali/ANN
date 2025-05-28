@@ -27,23 +27,33 @@ The Base Station Subsystem provides the radio access and handles communication b
 
 ### Base Station Transceiver *(BTS)*
 
-The **BTS** is responsible for radio transmission, that sends and receive radio signals to/from mobile devices *(error correction coding, modulation, equalization)*. Each **BTS** covers a specific geographical area, hundreds of meters in cities and several kilometers in rural areas.
+The **BTS** is responsible for radio transmission, that sends and receive radio signals to/from mobile devices *(error correction coding, modulation, equalization)*. In addition, it manages the physical layer *(multiplexing and encryption)*. It also manages the data link layer for signaling exchange between mobiles and the infrastructure. Each **BTS** covers a specific geographical area, hundreds of meters in cities and several kilometers in rural areas.
 
 ### Base Station Controller *(BSC)*:
 
-It is an element in a GSM network that manages a group of BTSs via an **A-bis** interface. It also manages navigation between BTSs without interrupting the call via Handover. The BSC is the link between the mobile telephone and the Mobile Services Switching Centre (MSC) via an A-interface.
+The **BSC** is the intelligent part of **BSS**, It manages a group of **BTS's** via an **A-bis** interface. It controls channel allocation, uses measurements made by the **BTS** to control the transmission powers of mobiles and/or the **BTS** and decides whether to perform a handover. It is also a switch that carries out a concentration of circuits towards the **MSC** via an **A-interface**.
 
 ## Network Switching Subsystem (NSS):
 
- The NSS main role is to manage the communications between GSM and other network users. Another task of it includes the main switching functions of GSM, databases required for the subscribers, and mobility management
+ The **NSS** main role is to manage the communications between **GSM** and other network users. Another task of it includes the main switching functions of **GSM**, databases required for the subscribers, and mobility management.
+
+It is a fixed network that includes all the functions necessary for establishing calls and mobility. It includes switches, gateways to the PSTN (Public Switched Telephone Network) as well as databases.
 
 ### The Mobile service Switching Centre (MSC)
 
- The Mobile service Switching Centre (MSC) is the main component of the network  Subsystem, works to direct calls through and regulate their passage between users, whether inside or outside them, through Interface A, and is considered a link between networks through which the user’s location is determined to deliver calls and transfer them between regions without interruption, It also works to protect calls from Extremism and fraud, and works to calculate the cost of calls and send them to the billing system.  Home location register: It is a master database containing the information of permanent subscribers to the GSM network,The HLR contains the details of each SIM card in the network and uses the card's IMSI as the primary key to search its records, which the MSC uses to find out the location,number, etc. Victor Location REgister (VLR): It is a temporary database to track MSC participants,to store information temporarily without the need for an HLR and when you leave it is automatically deleted to ensure the flow of the conversation.
+This mobile service switch manages the establishment of communications between a mobile and another **MSC** as well as the transmission of short messages *(SMS)* and the execution of handover when it is involved. It communicates with the **VLR** to manage the mobility of users *(verification of the characteristics of visiting subscribers during an outgoing call, transfer of location information, etc.)*. It can have a **GMSC** gateway function *(MSC Gateway)* which is activated at the start of each call from a fixed subscriber to a mobile subscriber.
 
-### Home Location Register:
+### Home location register
 
-It is a main database that contains information about permanent subscribers to the GSM network.The HLR contains the details of each SIM card in the network and uses the card's IMSI as the primary key to search its records, which the MSC uses to find out the location, number, etc. Victor Location Registration (VLR): It is a temporary database for tracking MSC participants, to temporarily store information without the need for an HLR and when you leave it is automatically deleted to ensure the conversation flows.
+The **HLR** is a database that manages subscribers of a **PLMN** *(Public Land Mobile Network)*. It stores the subscriber's international identity used by the network *(IMSI)*, the subscriber's directory number *(MSISDN)*, and the subscription profile. The **HLR** also has location data and stores the **VLR** number where each subscriber is registered. A subscriber is therefore associated with a unique **HLR**, regardless of their location, and is then identified by their **MISDN**.
+
+### Visitor Location Register (VLR):
+
+The **VLR** is a database that stores the subscription data of subscribers present in a geographical area. The data stored by the **VLR** is similar to that of the **HLR** but only concerns mobile subscribers present in the area in question. It also assigns the temporary identity *(TMSI)* to the mobile when it enters the covered area.
+
+ 
+
+`Home Location Register:It is a main database that contains information about permanent subscribers to the GSM network. The HLR contains the details of each SIM card in the network and uses the card's IMSI as the primary key to search its records, which the MSC uses to find out the location, number, etc. Victor Location Registration (VLR): It is a temporary database for tracking MSC participants, to temporarily store information without the need for an HLR and when you leave it is automatically deleted to ensure the conversation flows.`
 
 ### The Equipment Identities Register (EIR):
 
