@@ -1,0 +1,21 @@
+Introduction
+Neuron Model
+	Biological neuron
+	Artificial neuron
+Activation functions
+	step function
+	Identity Function
+	Linear Threshold Function
+	Sigmoid function
+	Hyperbolic Tangent (Tanh Function)
+Layard neural networks(Multilayer perceptron)
+	Multi-Layer Perceptron (MLP)
+	Learning process
+		Supervised learning process
+	Cost function
+	Backpropagation algorithm
+		Gradient Computation
+		Backpropagation weight update (Parameter (Weight) Update)
+Radial Basis Function Networks (RBFs)
+	Radial Basis Function (RBF)
+Conclusion
