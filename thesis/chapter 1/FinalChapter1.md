@@ -62,15 +62,83 @@ This database enables the authentication of service requests and the encryption 
 
 It ensures the management and supervision of the network. Network supervision occurs at many levels: fault detection, site commissioning, parameter modification, and statistics production.
 
----
-
 ## GPRS (General Packet Radio Service) 2.5G:
 
-As the need to send data on the air interface grew, new elements such as SGSN (Service GPRS) and GGSN (GPRS Gateway) were added to the existing GSM system by introducing a device on the BSC called a PCU (Packet Controller) that manages data transmission over packets.. These elements made it possible to send packet data on the air interface.Which contributes to connecting the GSM network to the Internet and transferring data across it.The maximum speed reached 114 kbps, which allows receiving and sending messages more comfortably.
+The growing demand on data services require the integration of new elements such as **SGSN** *(Service **GPRS**)* and GGSN (GPRS Gateway) to the existing GSM system by introducing a device on the **BSC** called a PCU (Packet Controller) that manages packet data transmission. Which contributes to connecting the GSM network to the Internet and ensuring data transmission. The maximum speed reached was 114 kbps.
+
+---
 
 ### EDGE (Enhanced Data Rates for GSM Evolution) 2.75G:
 
-The EDGE standard is a mobile telephony standard, an evolution of GSM. This technology adopts a new modulation allowing for higher data rates while using the existing GSM radio spectrum of the operators. It is characterized by better speed and performance compared to GPRS, about 384kbps.Although with limited speeds compared to the UMTS (Universal Mobile Telecommunications System) technologies that follow, EDGE has the capability to offer almost all 3G services. it therefore constitutes an interesting solution for an operator who wishes to offer 3G services using the already existing spectral resources of 2G.
+The **EDGE** standard is a mobile telephony standard, an evolution of **GSM**. This technology adopts a new modulation allowing for higher data rates while using the existing **GSM** radio spectrum of the operators. It is characterized by better speed and performance compared to **GPRS**, about 384kbps.Although with limited speeds compared to the UMTS (Universal Mobile Telecommunications System) technologies that follow, EDGE has the capability to offer almost all 3G services. it therefore constitutes an interesting solution for an operator who wishes to offer 3G services using the already existing spectral resources of 2G.
+
+### Operation mode
+
+When the mobile device is powered on, the following operations occur:
+
+- The user activates their SIM card.
+
+- The GSM receiver scans the channels in the GSM band and measures the signal strength on each channel.
+
+- The mobile identifies the BCCH (Broadcast Control Channel) among the strongest signals.
+
+- The mobile retrieves the information related to the FCCH (Frequency Correction Channel), which helps it precisely align with GSM channels.
+
+- The mobile receives the synchronization signal of the TDMA frame transmitted on the BCCH and synchronizes its frame accordingly.
+
+- The mobile reads information from the BCCH regarding the cell and the network and sends the caller's identification to the BTS (Base Transceiver Station) for location updating.
+
+Once this startup phase is completed, the mobile enters standby mode, during which it performs routine tasks such as:
+
+- Reading the PCH (Paging Channel) to detect possible incoming calls.
+
+- Reading the signaling channels of neighboring cells.
+
+- Measuring the BCH (Broadcast Channel) levels of neighboring cells in preparation for a potential handover.
+
+When Receiving a Call:
+
+- A landline user dials the mobile subscriber's number: 06 XX XX XX XX.
+
+- The call is routed to the nearest MSC (Mobile Switching Center), which searches the IMSI in the HLR (Home Location Register) and the mobile's location in the VLR (Visitor Location Register).
+
+- The MSC closest to the mobile (Visited MSC) broadcasts a message within the location area (covering several cells) to alert the targeted mobile via the PCH.
+
+- The mobile responds on the RACH (Random Access Channel) with a Timing Advance set to 0 and a power level determined by the network (these parameters will be adjusted later).
+
+- The network grants access through the AGCH (Access Grant Channel) and assigns the mobile a frequency and a time slot.
+
+- The called subscriber is identified via the SIM card.
+
+- The mobile receives the ringing command.
+
+- The subscriber answers the call, and the communication is established.
+
+When Making a Call:
+
+- The mobile subscriber dials the number of the correspondent in the switched telephone network.
+
+- The request reaches the BTS of its cell.
+
+- It passes through the BSC (Base Station Controller) to reach the MSC.
+
+- The caller is identified and their service rights are verified.
+
+- The call is routed to the public network.
+
+- The BSC requests the allocation of a channel for the upcoming communication.
+
+- The recipient picks up, and the communication is established.
+
+
+
+
+
+
+
+
+
+
 
 ### The third generation (3G):
 
