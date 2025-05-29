@@ -130,16 +130,6 @@ When Making a Call:
 
 - The recipient picks up, and the communication is established.
 
-
-
-
-
-
-
-
-
-
-
 ### The third generation (3G):
 
 ### Universale Mobile Telecommunications Syste UMTS:
