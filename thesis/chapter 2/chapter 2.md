@@ -284,13 +284,41 @@ assuming a network with multiple output units. The error derivatives with respec
 
 <img src="assets/2025-05-25-14-47-59-image.png" title="" alt="" data-align="center">
 
+$$
+\frac{\partial E}{\partial w_{ki}^{(L-1)}} = 
+(
+\sum_{j}
+\frac{\partial E}{\partial a_{j}^{(L)}} \times
+\frac{\partial a_{j}^{(L)}}{\partial z_{j}^{(L)}} \times
+\frac{\partial z_{j}^{(L)}}{\partial a_{k}^{(L-1)}}
+) \times
+\frac{\partial a_{k}^{(L-1)}}{\partial z_{k}^{(L-1)}} \times
+\frac{\partial z_{k}^{(L-1)}}{\partial w_{k}^{(L-1)}}
+$$
+
 Considering the new indices, the derivative for the error with respect to the bias b is given by:
 
 <img src="assets/2025-05-25-14-50-09-image.png" title="" alt="" data-align="center">
 
+$$
+\frac{\partial E}{\partial b_{j}^{(L)}} = 
+    \frac{\partial E}{\partial a_{j}^{(L)}} \times
+    \frac{\partial a_{j}^{(L)}}{\partial z_{j}^{(L)}} \times
+    \frac{\partial z_{j}^{(L)}}{\partial b_{j}^{(L)}}
+$$
+
 The error derivatives with respect to $b$ in (L−1) is given by:
 
 <img title="" src="assets/2025-05-25-14-52-41-image.png" alt="" data-align="center">
+
+$$
+\frac{\partial E}{\partial b_{k}^{(L-1)}} = 
+\frac{\partial E}{\partial a_{j}^{(L)}} \times
+\frac{\partial a_{j}^{(L)}}{\partial z_{j}^{(L)}} \times
+\frac{\partial z_{j}^{(L)}}{\partial a_{k}^{(L-1)}}\times
+\frac{\partial a_{k}^{(L-1)}}{\partial z_{k}^{(L-1)}} \times
+\frac{\partial z_{k}^{(L-1)}}{\partial b_{k}^{(L-1)}}
+$$
 
 ## Backpropagation weight update
 
@@ -300,17 +328,39 @@ For the weights $wjk$ in the (L) layer we update by:
 
 <img src="assets/2025-05-25-14-56-15-image.png" title="" alt="" data-align="center">
 
-For the weights $wjk$ in the (L−1) layer we update by:
+$$
+w_{jk}^{(L)} =
+w_{jk}^{(L)} - \eta \times
+\frac{\partial E}{\partial w_{jk}^{(L)}}
+$$
+
+For the weights $wki$ in the (L−1) layer we update by:
 
 <img src="assets/2025-05-25-14-57-09-image.png" title="" alt="" data-align="center">
+
+$$
+w_{ki}^{(L-1)} = 
+w_{ki}^{(L-1)} - \eta \times
+\frac{\partial E}{\partial w_{ki}^{(L-1)} }
+$$
 
 For the bias b in the (L) layer we update by:
 
 <img src="assets/2025-05-25-14-57-49-image.png" title="" alt="" data-align="center">
 
+$$
+b^{(L)} = b^{(L)} - \eta \times
+\frac{\partial E}{\partial b^{(L)}}
+$$
+
 For the bias b in the (L−1) layer we update by:
 
 <img src="assets/2025-05-25-14-58-34-image.png" title="" alt="" data-align="center">
+
+$$
+b^{(L-1)} = b^{(L-1)} - \eta \times
+\frac{\partial E}{\partial b^{(L-1)}}
+$$
 
 Where $η$ is the *step size* or *learning rate*.
 
