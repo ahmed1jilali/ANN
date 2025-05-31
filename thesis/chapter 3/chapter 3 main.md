@@ -1,55 +1,45 @@
-**Synthesis Methodology**
+Great! Here's a draft for **Section 1 – Problem Definition** of your thesis titled *"Traffic forecasting in 4G mobile networks using machine learning techniques"*:
 
-The synthesis of an MLP consists of several well-defined steps. These steps ensure effective learning and generalization of the network:
+---
 
-1. Problem Definition
-   
-   1.1 Clearly identify the nature of the problem (regression, classification, etc.).
-   
-   1.2 Define the input and output variables.
+## 1. Problem Definition
 
-2. Data Preprocessing
-   
-   2.1 Selection of Inputs: Identify the most relevant features influencing the output.
-   
-   2.2 Normalization: Scale data (e.g., min-max) to improve learning efficiency.
-   
-   2.3 Splitting: Divide the dataset into training, validation, and testing sets.
+### 1.1 Nature of the Problem
 
-3. Network Architecture Design
-   
-   3.1 Set the number of input neurons (equal to the number of features).
-   
-   3.2 Determine the number and size of hidden layers (often determined by trial and error or heuristic rules).
-   
-   3.3 Choose the number of output neurons (depends on the task).
-   
-   3.4 Choose activation functions (e.g., sigmoid, tanh).
+The growing demand for mobile data services has significantly increased the importance of traffic forecasting in 4G mobile networks. Accurate traffic prediction is essential for effective network planning, resource allocation, and congestion management. This thesis addresses a **regression problem**, where the goal is to predict a continuous value—specifically, the expected network throughput (or traffic volume) in the next hour based on historical data.
 
-4. Training the Network
-   
-   4.1 Define a cost function (e.g., Mean Squared Error for regression, Cross-Entropy for classification).
-   
-   4.2 Select an optimization algorithm (e.g., Gradient Descent).
-   
-   4.3 Train the network using backpropagation to update weights by minimizing the cost function.
-   
-   4.4 Use early stopping, dropout, or regularization to avoid overfitting.
+Forecasting network traffic allows operators to anticipate periods of high demand and optimize network performance accordingly. Unlike classification tasks that aim to assign categories to input data, regression involves modeling the relationship between numerical inputs and a continuous output variable. In this case, the forecasting model seeks to learn from historical traffic patterns and generalize this knowledge to predict future usage levels.
 
-5. Evaluation and Validation: Measure performance using appropriate metrics
-   
-   5.1 Regression: MSE, MAE, R²
-   
-   5.2 Classification: Accuracy and Precision
+### 1.2 Input and Output Variables
 
-6. Model Deployment
-   
-   6.1 Use the trained model to make predictions on new data.
-   
-   6.2 Optionally, de-normalize the outputs to return to the original scale.
+To simplify the modeling process and focus on temporal patterns, the Multilayer Perceptron (MLP) model developed in this work uses the **traffic values of the current hour and the previous hour** as input features. These values represent the recent history of network usage and are assumed to be highly indicative of short-term future behavior.
 
-The synthesis of artificial neural networks is illustrated in the flowchart presented in FigureXX.
+- **Input Variables (Features):**
+  
+  - Traffic at time *t-1*
+  
+  - Traffic at time *t*
 
-![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXe2UfJrajKBXqbNNRSoKtVgO7R4HROHB0mYMPqxso7hq9KkCcPvfy45ABgCwEM05QAzk6DMotZiaLw2eJaQA7243xP7mm94J1C1kYZSf88tlCE9fIg-XPpAqJaVGmZ_pTQE5AgObSw7_4MmQHVwU_Y?key=H2fU1FHmzzEOllE78KoyYQ)
+- **Output Variable (Target):**
+  
+  - Forecasted traffic at time *t+1*
 
-**Flowchart** of the synthesis of a multilayer perceptron
+By using a sliding time window approach, the model is trained to recognize sequential dependencies in traffic patterns. The simplicity of this feature set supports fast training and real-time prediction capabilities, which are critical in mobile network environments.
+
+---
+
+The Multilayer Perceptron *(**MLP**)* model developed in this work uses the **throughput values of the current hour and the previous hour** as features. These values represent the history of the network usage, and are assumed to be highly indicative of short-term future behavior.
+
+- **Input Features:**
+  
+  - Network throughput at time $t-1$
+  
+  - Network throughput at time $t$
+
+- **Output Target:**
+  
+  - Forecasted throughput at time $t+1$
+
+The model is trained to recognize sequential dependencies in traffic temporal patterns, where each input includes traffic from two consecutive hours, the model can learn how traffic evolves over time.
+
+---
