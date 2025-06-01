@@ -28,18 +28,40 @@ By using a sliding time window approach, the model is trained to recognize seque
 
 ---
 
-The Multilayer Perceptron *(**MLP**)* model developed in this work uses the **throughput values of the current hour and the previous hour** as features. These values represent the history of the network usage, and are assumed to be highly indicative of short-term future behavior.
+## 2. Data Preprocessing
 
-- **Input Features:**
-  
-  - Network throughput at time $t-1$
-  
-  - Network throughput at time $t$
+Data preprocessing is a crucial step in the machine learning pipeline, particularly in time series forecasting tasks such as traffic prediction. Properly preparing the dataset ensures the model can learn effectively and generalize well to unseen data. The preprocessing steps followed in this thesis are outlined below.
 
-- **Output Target:**
-  
-  - Forecasted throughput at time $t+1$
+### 2.1 Selection of Inputs
 
-The model is trained to recognize sequential dependencies in traffic temporal patterns, where each input includes traffic from two consecutive hours, the model can learn how traffic evolves over time.
+To maintain a balance between model simplicity and performance, only two features were selected as inputs: the traffic at the current hour (*t*) and the previous hour (*t-1*). These features were chosen based on the assumption that short-term past values are highly predictive of near-future traffic, which is common in mobile network traffic patterns.
+
+This selection process reduces noise from irrelevant variables and minimizes the complexity of the model, allowing the Multilayer Perceptron to focus on learning temporal trends without overfitting to extraneous data.
+
+### 2.2 Normalization
+
+The raw traffic data exhibited variations in scale and magnitude that could negatively impact the learning process. To address this, **Min-Max normalization** was applied to scale all values into the [0, 1] range:
+
+where:
+
+- is the original traffic value,
+
+- and are the minimum and maximum values in the dataset, respectively,
+
+- is the normalized value.
+
+This transformation ensures that all features contribute equally to the learning process and helps accelerate the convergence of the optimization algorithm.
+
+### 2.3 Splitting
+
+The dataset consisted of **2000 hourly traffic records**, representing approximately 83 days of continuous traffic monitoring. This dataset was split into three subsets:
+
+- **Training Set (70%)** – Used to train the model and update weights.
+
+- **Validation Set (15%)** – Used to tune hyperparameters and monitor for overfitting.
+
+- **Test Set (15%)** – Used to evaluate the final model’s performance on unseen data.
+
+The splitting was performed chronologically to preserve the temporal order of the data, avoiding any data leakage from the future into the past. This is particularly important in time series forecasting, where the sequence of observations is a key factor.
 
 ---
