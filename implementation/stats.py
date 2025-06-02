@@ -91,6 +91,21 @@ class Stats:
             plt.savefig(f'{self.saveFolder}/lossCurveOverEpochs.png', format='png', dpi=600, transparent=self.transparentBg)
         plt.show()
 
+    def plot_weight_distributions(self, param):
+        weights = [("W1", param["W1"].flatten()),
+                ("W2", param["W2"].flatten()),
+                ("W3", param["W3"].flatten())]
+        plt.figure(figsize=(15, 4))
+        for i, (name, w) in enumerate(weights):
+            plt.subplot(1, 3, i+1)
+            plt.hist(w, bins=20, color='skyblue', edgecolor='black')
+            plt.title(f"{name} Distribution")
+            plt.xlabel("Weight Value")
+            plt.ylabel("Frequency")
+        plt.tight_layout()
+        plt.show()
+
+
 
 
 

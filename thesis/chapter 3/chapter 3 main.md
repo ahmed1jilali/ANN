@@ -58,10 +58,54 @@ The dataset consisted of **2000 hourly traffic records**, representing approxima
 
 - **Training Set (70%)** – Used to train the model and update weights.
 
-- **Validation Set (15%)** – Used to tune hyperparameters and monitor for overfitting.
-
-- **Test Set (15%)** – Used to evaluate the final model’s performance on unseen data.
+- **Testing Set (30%)** - Used to evaluate the final model’s performance on unseen data.
 
 The splitting was performed chronologically to preserve the temporal order of the data, avoiding any data leakage from the future into the past. This is particularly important in time series forecasting, where the sequence of observations is a key factor.
 
 ---
+
+Great! Here's the draft for **Section 3 – Network Architecture Design** of your thesis:
+
+---
+
+## 3. Network Architecture Design
+
+The performance of a neural network depends heavily on its architecture. This section outlines the design decisions made for the Multilayer Perceptron (MLP) model used to forecast traffic in 4G mobile networks.
+
+### 3.1 Input Layer
+
+The input layer is configured with **2 neurons**, corresponding to the two selected input features:
+
+- Traffic at time *t-1*
+
+- Traffic at time *t*
+
+These neurons serve as the entry point for the model, encoding the recent traffic history necessary for predicting the next value.
+
+### 3.2 Hidden Layers
+
+The hidden layer configuration was determined through a combination of **trial-and-error and empirical rules of thumb**. Initially, several architectures were tested, and the following was found to provide a good balance between accuracy and training time:
+
+- **1 hidden layer**
+
+- **8 neurons** in the hidden layer
+
+This configuration was sufficient to capture the nonlinear relationships in the data without leading to overfitting. The relatively small number of neurons was chosen deliberately to reduce computational complexity and promote generalization.
+
+### 3.3 Output Layer
+
+The output layer consists of **1 neuron**, which produces a single continuous value: the **predicted traffic at time *t+1***. This aligns with the regression nature of the task, where the model must output a real-valued estimate rather than a class label.
+
+### 3.4 Activation Functions
+
+Activation functions were chosen to introduce nonlinearity into the network and allow it to model complex relationships in the data.
+
+- **Hidden Layer:** The **hyperbolic tangent (tanh)** activation function was used. Tanh outputs values in the range [-1, 1], which works well with normalized data and provides stronger gradients compared to sigmoid functions.
+
+- **Output Layer:** A **linear activation** function was used, as it is standard practice in regression tasks where the output is a continuous variable.
+
+This simple yet effective architecture allowed the model to learn temporal dependencies in traffic patterns without the need for more complex recurrent or convolutional structures.
+
+---
+
+Let me know if you'd like to visualize the architecture with a diagram or move on to **Section 4: Training the Network**.

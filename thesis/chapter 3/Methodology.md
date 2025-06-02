@@ -32,9 +32,11 @@ The synthesis of an MLP consists of several well-defined steps. These steps ensu
    
    4.2 Select an optimization algorithm (e.g., Gradient Descent).
    
-   4.3 Train the network using backpropagation to update weights by minimizing the cost function.
+   4.3 Weights initialization
    
-   4.4 Use early stopping, dropout, or regularization to avoid overfitting.
+   4.4 Train the network using backpropagation to update weights by minimizing the cost function.
+   
+   4.5 Use early stopping, dropout, or regularization to avoid overfitting.
 
 5. Evaluation and Validation: Measure performance using appropriate metrics
    
