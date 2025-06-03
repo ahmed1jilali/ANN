@@ -91,4 +91,97 @@ The output layer consists of **1 neuron**, which produces a single normalized va
 
 ### 3.4 Activation functions
 
----
+Activation functions are chosen to introduce nonlinearity into the network and allow it to model complex relationships in the data.
+
+**Hidden layer:** The **sigmoid** activation function was used. sigmoid maps input values to a ranger between 0 and 1, see [chapter 2 section 3 subsection 4]. While it can suffer from vanishing gradient issues in deeper networks, sigmoid is generally effective in small shallow networks like the one used in this study.
+
+**Output layer:** A **Linear activation** function was used in the output layer to allow the model to produce a continues numerical output appropriate for regression tasks.
+
+## 4. Training the network
+
+Training a neural network involves adjusting its internal parameters *(weights and biases)* so that it can learn the relationship between inputs and outputs from data. This section details the approach taken to train the Multilayer Perceptron *(**MLP**)* for traffic forecasting.
+
+### 4.1 Cost function
+
+To measure the difference between the predicted and actual traffic values, the **Mean squared error** *(**MSE**)* was used as the cost function:
+
+$$
+MSE = \frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}} - y_{i})^2
+$$
+
+Where $\hat{y}$ is the predicted data, and the $y$ is the actual data. **MSE** is commonly used in regression proble3ms because it penalizes larger errors more heavily, encouraging the network to minimize deviations in predictions.
+
+### 4.2 Weights initialization
+
+Weights are adjusted during the training phase in the aim to minimize the difference between the predicted and desired outputs. Setting these weights correctly, called weight initialization, plays a critical role in speeding up the training process. Improper initialization can leads to issues like the vanishing and exploding gradients.
+
+#### Vanishing Gradients:
+
+When weights are very small, the gradients can become tiny, preventing the network from learning effectively.
+
+#### Exploding Gradients:
+
+When weights are too large, gradients can grow too fast, making the model unstable or causing it to fail to converge.
+To counter these issues, two main techniques have emerged: Xavier Initialization and He Initialization.
+
+#### Xavier Initialization:
+
+Named after its creator, Xavier Glorot, this initialization method based on variance equality between input values and the output value of each layer, the variance of the weight in the forward propagation process should be:
+
+$$
+var(w_{i}) = \frac{1}{n_{in}}
+$$
+
+where $n_{in}$ is the number of input neurons 
+
+if we go through backpropagation we get:
+
+$$
+var(w_{i}) = \frac{1}{n_{out}}
+$$
+
+where $n_{out}$ is the number of output neurons.
+
+In the general case, the $n_{in}$ and $n_{out}$ of a layer may not be equal, Xavier and Bengio found a compromise using the average of the $n_{in}$ and the $n_{out}$ proposing that:
+
+$$
+var(w_{i}) = \frac{1}{n_{avg}}
+$$
+
+where $n_{avg} = \frac{n_{in} + n_{out}}{2}$
+
+One good way is to assign the weights from a Gaussian distribution. The idea is to initialize weights using zero mean gaussian distribution with variance:
+
+$$
+\sigma^2 = \frac{2}{n_{in}+n_{out}}
+$$
+
+when the uniform distribution in the interval $[-a, a]$ is used such that:
+
+$$
+a = \sqrt{\frac{6}{n_{in}+{n_{out}}}}
+$$
+
+we get the same results as zero mean gaussian distribution described above.
+
+Xavier and Bengio considered sigmoid activation function. The initialization strategy for **ReLU** activation function, sometimes called He initialization is to multiply the variance of the weights by 2, which gave in the case of zero mean gaussian distribution with variance:
+
+$$
+\sigma^2 = \frac{4}{n_{in}+n_{out}}
+$$
+
+In the case of uniform distribution the weights are generated in the interval $[-a, a]$ such that:
+
+$$
+a = \sqrt{\frac{12}{n_{in}+{n_{out}}}}
+$$
+
+### 4.3 Backpropagation *(gradient decent)*
+
+The backpropagation algorithm was used to train the network by propagating the error from the output layer back through the hidden layers. for more details about the backpropagation algorithm the reader is invited to see `[chapter 2, section 4, subsection 4]`
+
+
+
+
+
+## Results and discussions
