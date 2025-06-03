@@ -1,0 +1,107 @@
+test_size=0.3
+file="Throughput_Mbps.csv"
+init=""
+lr=0.9
+hidden_neurons=5
+iterations=5000
+Test R² Score: 0.7978
+
+test_size=0.3
+file="Throughput_Mbps.csv"
+init=""
+lr=1
+hidden_neurons=5
+iterations=5000
+Test R² Score: 0.7972
+
+test_size=0.3
+file="Throughput_Mbps.csv"
+init=""
+lr=0.7
+hidden_neurons=5
+iterations=5000
+Test R² Score: 0.7978
+
+test_size=0.3
+file="Throughput_Mbps.csv"
+init="XG"
+lr=0.7
+hidden_neurons=5
+iterations=5000
+R² Score: 0.7971
+
+test_size=0.3
+file="Throughput_Mbps_1300.csv"
+init="XG"
+lr=0.7
+hidden_neurons=5
+iterations=5000
+R² Score: 0.7508
+
+test_size=0.3
+file="Throughput.csv"
+init="XG"
+lr=0.7
+hidden_neurons=5
+iterations=5000
+Test R² Score: 0.8497
+
+test_size=0.3
+file="Throughput.csv"
+init="XG"
+lr=0.7
+hidden_neurons=7
+iterations=5000
+Test R² Score: 0.8387
+
+test_size=0.3
+file="Throughput.csv"
+init="XG"
+lr=0.7
+hidden_neurons=3
+iterations=5000
+Test R² Score: 0.8510
+
+test_size=0.3
+file="Throughput.csv"
+init="XG"
+lr=0.7
+hidden_neurons=2
+iterations=5000
+Test R² Score: 0.8456
+
+-----chosen-for-compair-----
+
+test_size=0.1
+file="Throughput_Mbps_5000.csv"
+init="XG"
+lr=1
+hidden_neurons=4
+iterations=7000
+Test R² Score: 0.8202
+
+test_size=0.1
+file="Throughput_Mbps_5000.csv"
+init="XG"
+lr=1
+hidden_neurons=10
+iterations=7000
+Test R² Score: 0.8110
+
+test_size=0.1
+file="Throughput_Mbps_5000.csv"
+init="XG"
+lr=1
+hidden_neurons=3
+iterations=7000
+Test R² Score: 0.8198
+
+-----chosen-for-production------
+
+test_size=0.1
+file="Throughput_Mbps_5000.csv"
+init="XG"
+lr=1
+hidden_neurons=3
+iterations=7000
+Test R² Score: 0.8198

@@ -180,8 +180,4 @@ $$
 
 The backpropagation algorithm was used to train the network by propagating the error from the output layer back through the hidden layers. for more details about the backpropagation algorithm the reader is invited to see `[chapter 2, section 4, subsection 4]`
 
-
-
-
-
 ## Results and discussions
