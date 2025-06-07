@@ -56,8 +56,6 @@ def initialisationHeUniform(n0, n1, n2):
     }
 
 
-
-
 def forward_propagation(X, params):
     Z1 = params['W1'].dot(X) + params['b1'] #(n1,1)
     A1 = 1 / (1 + np.exp(-Z1))#(n1,1)
@@ -67,12 +65,13 @@ def forward_propagation(X, params):
 def back_propagation(X, y, params, activations):
     A1, A2 = activations['A1'], activations['A2']
     m = y.shape[1]
-    dZ2 = A2 - y #(1,1)
-    dW2 = (1 / m) * dZ2.dot(A1.T) #(1,n1)
-    db2 = (1 / m) * np.sum(dZ2, axis=1, keepdims=True)
+    # E = (1/n)*(1/2)*(a-y)
+    dZ2 = (A2 - y)/m #(1,1)
+    dW2 = dZ2.dot(A1.T) #(1,n1)
+    db2 = np.sum(dZ2, axis=1, keepdims=True)
     dZ1 = params['W2'].T.dot(dZ2) * A1 * (1 - A1)#
-    dW1 = (1 / m) * dZ1.dot(X.T)
-    db1 = (1 / m) * np.sum(dZ1, axis=1, keepdims=True)
+    dW1 = dZ1.dot(X.T)
+    db1 = np.sum(dZ1, axis=1, keepdims=True)
     return {'dW1': dW1, 'db1': db1, 'dW2': dW2, 'db2': db2}
 
 def update(params, grads, lr):
@@ -126,7 +125,7 @@ X_train, X_test = X_train.T, X_test.T
 y_train, y_test = y_train.reshape(1, -1), y_test.reshape(1, -1)
 
 # Train
-params, loss_history = train_nn(X_train, y_train, hidden_neurons=10, lr=1, iterations=7000, init="XG")
+params, loss_history = train_nn(X_train, y_train, hidden_neurons=3, lr=1, iterations=7000, init="XG")
 
 # Predict
 y_pred_train = predict(X_train, params)
@@ -183,9 +182,43 @@ plt.ylabel("Predicted")
 plt.title("Scatter Plot: Actual vs Predicted (Test)")
 plt.grid(True)
 
+# Adjust the number of bins depending on your dataset size for better granularity.
+plt.figure(figsize=(8, 5))
+plt.hist(residuals_test, bins=30, color='purple', edgecolor='black', alpha=1)
+# A vertical line at zero to show bias (left = underprediction, right = overprediction).
+plt.axvline(0, color='black', linestyle='--')
+plt.title("Residual Errors Histogram")
+plt.xlabel("Residual (y_actual - y_predicted)")
+plt.ylabel("Frequency")
+plt.grid(True)
+plt.tight_layout()
+
+
 #plt.tight_layout()
 plt.show()
-
+print("residuals_test")
+print(residuals_test)
+print()
+print("-"*10)
+print("loss_history")
+print(loss_history)
+print()
+print("-"*10)
+print("y_test_true")
+print(y_test_true)
+print()
+print("-"*10)
+print("y_test_pred")
+print(y_test_pred)
 # === METRICS ===
 # print(f"Test MSE: {mse_test:.4f}")
 
+
+# plt.scatter(y_pred_test, residuals_test, alpha=0.5) # alpha helps visualize dense areas
+plt.scatter(y_test_pred, residuals_test, alpha=0.5) # alpha helps visualize dense areas
+plt.axhline(0, color='red', linestyle='--')
+plt.title("Residuals vs. Predicted Values (Scatter Plot)")
+plt.xlabel("Predicted Values")
+plt.ylabel("Residuals")
+plt.grid(True)
+plt.show()

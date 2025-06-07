@@ -26,8 +26,6 @@ The Multilayer Perceptron *(**MLP**)* model developed in this work uses the **th
 
 The model is trained to recognize sequential dependencies in traffic temporal patterns, where each input includes traffic from two consecutive hours, the model can learn how traffic evolves over time.
 
----
-
 ## 2. Data preprocessing
 
 Preprocessing is a crucial step after gathering data, which makes the modeling more effective. This step depends on what task is to be performed and the characteristics of the data being handled.
@@ -60,10 +58,10 @@ $$
 
 ### 2.3 Splitting
 
-The dataset used is consisted of **2000 hourly traffic records**, representing approximately 83 days of continuous traffic monitoring. This dataset was split into two subsets:
+The dataset used is consisted of **5000 hourly traffic records**, representing approximately 208 days of continuous traffic monitoring. This dataset was split into two subsets:
 
-- **Training Set (70%)** – Used to train the model and update weights.
-- **Testing Set (30%)** - Used to evaluate the final model’s performance on unseen data.
+- **Training Set (90%)** – Used to train the model and update weights.
+- **Testing Set (10%)** - Used to evaluate the final model’s performance on unseen data.
 
 the splitting was performed chronologically to preserve the temporal order of the data. This is particularly important in time series forecasting, where the sequence of observations is a key factor.
 
@@ -83,7 +81,7 @@ These neurons serve as the entry point for the model.
 
 ### 3.2 Hidden layer
 
-The hidden layer configuration was determined through a combination of trial-and-error, by varying the number of neurons in the hidden layer, **7 neurons** gave the best result, but this is heavily impacted by other factors like weight initialization and activation functions used. The small number of neurons was chosen deliberately to reduce computational complexity.
+The hidden layer configuration was determined through a combination of trial-and-error, by varying the number of neurons in the hidden layer, **3 neurons** gave the best result, but this is heavily impacted by other factors like weight initialization and activation functions used. The small number of neurons was chosen deliberately to reduce computational complexity.
 
 ### 3.3 Output layer
 
