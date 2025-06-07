@@ -22,7 +22,7 @@ The model with 3 hidden neurons was selected for production deployment, this was
 
 - Simpler architecture 
 
-Although the configuration with 4 hidden neurons slightly outperformed the other configurations in terms of the $R^2$ score *(0.8202)*, the marginal difference in performance of less then *0.005* did not justify the added complexity of additional neurons.
+Although the configuration with 4 hidden neurons slightly outperformed the other configurations in terms of the $R^2$ score *(0.8202)*, the marginal difference in performance of less than *0.005* did not justify the added complexity of additional neurons.
 
 ### <mark>5.3 Selected Model performance</mark>
 
@@ -38,7 +38,7 @@ As depicted in the **Figure**, the **MSE** shows a rapid decrease during the ini
 
 ### <mark>5.5 Prediction accuracy on test data</mark>
 
-To assess the model's forecasting capability. it's predictions on the test set *(500 hours)* were compared against the actual recorded throughput values.
+To assess the model's forecasting capability. its predictions on the test set *(500 hours)* were compared against the actual recorded throughput values.
 
 #### <mark>5.5.1 Actual vs predicted throughput over time</mark>
 
@@ -48,7 +48,7 @@ The **Figure** below provides a time series comparison of the actual throughput 
 
 `Actual vs predicted throughput on the test set.`
 
-The plot shows that the predicted throughput *(orange line)* generally follows the trends and patterns of the actual throughput *(blue line)*. The model appears capable of capturing the general fluctuations of the mobile network traffic. However, it can observed that the model's underestimate the peaks *(high traffic periods)* and overestimate the dips *(low traffic periods)*. `oppertunity for further model refinement/ common in regressin tasks`
+The plot shows that the predicted throughput *(orange line)* generally follows the trends and patterns of the actual throughput *(blue line)*. The model appears capable of capturing the general fluctuations of the mobile network traffic. However, it can observed that the model's underestimate the peaks *(high traffic periods)* and overestimate the dips *(low traffic periods)*. `opportunity for further model refinement/ common in regression tasks`
 
 #### <mark>5.5.2 Scatter plot of actual vs predicted values</mark>
 
@@ -58,7 +58,7 @@ The **Figure** below presents a scatter plot of the predicted throughput values 
 
 `Scatter plot actual vs predicted throughput on the test set.`
 
-The concentration of of points around the diagonal line visually confirms the strong positive correlation between predicted and actual values, which is clearly supported by the $R^2$ score of 0.8198, the plot indicates that the model performs consistently across a range of throughput values. However, a slight tendency for the spread of points to  increase at higher throughput values can be observed.
+The concentration of points around the diagonal line visually confirms the strong positive correlation between predicted and actual values, which is clearly supported by the $R^2$ score of 0.8198, the plot indicates that the model performs consistently across a range of throughput values. However, a slight tendency for the spread of points to  increase at higher throughput values can be observed.
 
 ```
 error might be larger during periods of very high traffic
@@ -68,7 +68,7 @@ heteroscedasticity
 
 ### <mark>5.6 Residual analysis</mark>
 
-The analysis of the residuals *(the differences between actual and predicted values)* provides deeper insights into the mode's behavior and it's shortcomings.
+The analysis of the residuals *(the differences between actual and predicted values)* provides deeper insights into the model's behavior and it's shortcomings.
 
 #### <mark>5.6.1 Residuals histogram</mark>
 
@@ -78,7 +78,7 @@ The **Figure** below displays a histogram of the residual errors from the test s
 
 `Histogram of residual errors on the test set.`
 
-From the histogram it's clearly that the residuals follow a normal distribution with mean of zero *(center)*. This is a desirable characteristic, indicating that the model accuracy is acceptable, and it also indicate that the model does not consistently make the same type of error, such as always overestimating or underestimating. Another observation is that the majority of prediction errors are relatively small, clustering around the mean, the spread of the distribution along with a few large values at the ends, shows how big the model's prediction errors can be.
+From the histogram it's clear that the residuals follow a normal distribution with mean of zero *(center)*. This is a desirable characteristic, indicating that the model accuracy is acceptable, and it also indicate that the model does not consistently make the same type of error, such as always overestimating or underestimating. Another observation is that the majority of prediction errors are relatively small, clustering around the mean, the spread of the distribution along with a few large values at the ends, shows how big the model's prediction errors can be.
 
 #### <mark>5.6.2 Residuals vs. predicted values analysis</mark>
 
@@ -145,20 +145,19 @@ The cone-shaped scatterplot indicates that the model performs differently depend
 
 ![](assets/2025-06-04-21-16-47-image.png)
 
-p + L = 120
 
-2p + L/2 = 150
 
-p = 120-L
 
-2*(120-L) + L/2 -150 = 0
 
-240 - 2L + L/2 - 150 = 0
 
--(3/2) L + 90 = 0
 
-(3/2)L = 90
-
-L = 180/3 = 60
-
-p = 60
+| Issue                    | Suggestion                                                        |
+| ------------------------ | ----------------------------------------------------------------- |
+| Missing RMSE values      | Add RMSE to performance table                                     |
+| High learning rate       | Justify or adjust                                                 |
+| Feature selection        | Explain input choice                                              |
+| Lack of cross-validation | Discuss or acknowledge                                            |
+| Grammar/typos            | Proofread and correct                                             |
+| Figure references        | Number and cite consistently                                      |
+| Statistical significance | Add or acknowledge                                                |
+| Residual analysis        | Link observations to model assumptions (e.g., heteroscedasticity) |
