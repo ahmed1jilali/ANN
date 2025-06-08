@@ -48,7 +48,7 @@ The **Figure** below provides a time series comparison of the actual throughput 
 
 `Actual vs predicted throughput on the test set.`
 
-The plot shows that the predicted throughput *(orange line)* generally follows the trends and patterns of the actual throughput *(blue line)*. The model appears capable of capturing the general fluctuations of the mobile network traffic. However, it can observed that the model's underestimate the peaks *(high traffic periods)* and overestimate the dips *(low traffic periods)*. `opportunity for further model refinement/ common in regression tasks`
+The plot shows that the predicted throughput *(orange line)* generally follows the trends and patterns of the actual throughput *(blue line)*. The model appears capable of capturing the general fluctuations of the mobile network traffic. However, it can be observed that the model's underestimate the peaks *(low traffic periods)*. `opportunity for further model refinement/ common in regression tasks`
 
 #### <mark>5.5.2 Scatter plot of actual vs predicted values</mark>
 
@@ -88,13 +88,45 @@ Plotting the residuals against the corresponding predicted values helps to deter
 
 `Scatter plot of residuals vs predicted values on the test set.`
 
-As observed in **Figure** the residuals are centered around the zero line when the throughput value is less then 20000 Kbps, and at lower throughput values the residuals are tightly clustered around zero, which indicates that the model predictions are more accurate at low throughput values where congestion or network performance issues are present.
+As observed in **Figure** the residuals are centered around the zero line when the throughput value is less then 20000 Kbps, and at lower throughput values the residuals are tightly clustered around zero, which indicates that the model predictions are more accurate at low throughput values where congestion or network performance issues are present. Another observation at higher throughput values the residuals are more spread and taking on large values meaning that the model predictions is not accurate when predicting high throughput values.
 
+### <mark>5.7 Discussion</mark>
 
+The results shows that the relatively simple MLP model utilizing only the throughput of the current and previous hour provides a reasonably accurate forecast for the next hour in the 4G mobile network achieving an accuracy of approximately 82%.
 
-### 5.7 Discussion
+While using the sigmoid activation function in the hidden the model was capable of capturing the non-linear relationships in the traffic data, while the linear activation function in the output unit is appropriate for the regression task of predicting the continuous throughput values.
 
-The results indicates that the relatively simple MLP model utilizing only the throughput of the current and previous hour, provides a reasonably accurate forecast for the next hour in the 4G mobile network, achieving an $R^2$ of approximately 0.82. The sigmoid activation function in the hidden layer allowed the model to capture the non-linear relationships in the traffic data, while the linear activation function in the output unit is appropriate for the regression task of predicting the continuous throughput values.
+However, several limitations were identified during the analysis including the model tendency to **underestimate during low traffic periods**, this behavior is visible in both the *actual vs predicted throughput over time plot* see **Figure** and *residuals vs. predicted values scatter plot* see **Figure**.
+
+It's also clear that the model is more reliable at lower throughput values *(higher traffic)*, this can be seen in the normal distribution of the residuals where most of the residuals are centered around zero see **Figure** and the residuals vs. predicted values scatter plot in **Figure**.
+
+Although this model is quite good at predicting the high traffic on the 4G network, more improvements can still be done, some of them are listed bellow:
+
+- Increasing the inputs of the model *(more previous hours)*.
+
+- Increasing the number of hidden layers.
+
+- Incorporating additional features such as time of the day, day of the week, external factors *(weather, scheduled events, know maintenance, etc.)*
+
+In summary the results show that the lightweight **MLP** model can be used effectively to forecast short-term mobile traffic, with clear strengths such as the models simplicity and fast training. Nonetheless the analysis also reveals areas where performance could also be improved to enhance the model robustness.
+
+---
+
+### 5.7 Discussion (continued)
+
+The results indicate that even a relatively simple MLP architecture, trained with a limited input window (current and previous hour throughput), can achieve a predictive accuracy of approximately **82%**, as measured by the $R^2$ metric. This level of performance demonstrates that mobile network traffic exhibits patterns that can be effectively captured with basic neural network models and minimal input features.
+
+However, several limitations were identified during the analysis. Firstly, the model showed a tendency to **underestimate during peak traffic periods** and **overestimate during low traffic periods**. This behavior, visible in both the time series comparison and the residual plots, suggests that the model may not be fully capturing the dynamics associated with traffic extremes. Such systematic deviations can be indicative of **nonlinearities** or **seasonal patterns** that are not fully represented in the current feature set or model complexity.
+
+The scatter plots of actual versus predicted throughput and residuals versus predicted values also highlight a slight **heteroscedasticity**, where prediction errors increase with larger throughput values. While the residuals appear normally distributed and centered around zero — an indicator of unbiased estimation — this variance pattern suggests the model is more reliable at lower traffic volumes. This limitation is common in regression tasks and may warrant further investigation through **data transformation techniques**, **variance-stabilizing methods**, or **advanced architectures**.
+
+Furthermore, the use of a **fixed train-test split** (90/10) without cross-validation, while sufficient for initial experimentation, may not fully account for **temporal variability or data drift** in real-world mobile networks. Incorporating **K-fold cross-validation** or **time series-aware validation methods** (e.g., walk-forward validation) in future work would enhance the robustness and generalizability of the findings.
+
+The current MLP model employed a **sigmoid activation function** in the hidden layer and a **linear output**, both of which are appropriate for modeling nonlinear relationships in continuous-valued outputs. However, alternative architectures such as **recurrent neural networks (RNNs)**, **long short-term memory (LSTM)** networks, or even **temporal convolutional networks (TCNs)** could be explored to better exploit the temporal structure of network traffic data.
+
+Another potential enhancement lies in **feature engineering**. While this study used only the current and previous hour throughput, incorporating additional features — such as **time-of-day**, **day-of-week**, **historical lag windows**, or **exogenous variables** (e.g., weather, scheduled events, or known maintenance) — may improve forecasting accuracy and help address the model’s limitations during high-traffic fluctuations.
+
+In summary, the experimental results demonstrate that a lightweight MLP model can serve as a viable baseline for short-term mobile traffic prediction, with clear strengths in model simplicity, fast training, and interpretable behavior. Nonetheless, the analysis also reveals areas where performance could be improved, particularly in capturing extreme values and enhancing model robustness through richer inputs and more advanced validation strategies.
 
 ---
 
@@ -144,12 +176,6 @@ Test R² Score: 0.8198
 The cone-shaped scatterplot indicates that the model performs differently depending on the magnitude of the estimated value. In this case, the model performs better (the residuals are smaller) for tracts with fewer crimes than for tracts with many crimes.
 
 ![](assets/2025-06-04-21-16-47-image.png)
-
-
-
-
-
-
 
 | Issue                    | Suggestion                                                        |
 | ------------------------ | ----------------------------------------------------------------- |
